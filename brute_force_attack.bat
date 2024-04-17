@@ -7,39 +7,23 @@ call :MAIN_MENU
 :MAIN_MENU
 color 02
 
-echo  _____      _____             __             ___       _____       ___
-
-echo |     \    /     |           /  \           |   |     |     \     |   |
-
-echo |      \  /      |          /    \          |   |     |      \    |   |
-
-echo |       \/       |         /      \         |   |     |    _  \   |   |
-
-echo |    |\    /|    |        /   __   \        |   |     |   | \  \  |   |
-
-echo |    | \__/ |    |       /   /  \   \       |   |     |   |  \  \ |   |
-
-echo |    |      |    |      /   /    \   \      |   |     |   |   \  \|   |
-
-echo |____|      |____|     /___/      \___\     |___|     |___|    \______|
-
-echo                   _____      _____       _____________       _____        ___      ____      ____ 
-
-echo                  |     \    /     |     |    _________|     |     \      |   |    |    |    |    |
-
-echo                  |      \  /      |     |    |              |      \     |   |    |    |    |    |
-
-echo                  |       \/       |     |    |              |       \    |   |    |    |    |    |
-
-echo                  |                |     |    |______        |    _   \   |   |    |    |    |    |
-
-echo                  |    |\    /|    |     |     ______|       |   | \   \  |   |    |    |    |    |
-
-echo                  |    | \__/ |    |     |    |              |   |  \   \ |   |    |    \____/    |
-
-echo                  |    |      |    |     |    |________      |   |   \   \|   |    \              /
-
-echo                  |____|      |____|     |_____________|     |___|    \_______|     \____________/
+echo " _____      _____             __             ___       _____       ___"
+echo "|     \    /     |           /  \           |   |     |     \     |   |"
+echo "|      \  /      |          /    \          |   |     |      \    |   |"
+echo "|       \/       |         /      \         |   |     |    _  \   |   |"
+echo "|    |\    /|    |        /   __   \        |   |     |   | \  \  |   |"
+echo "|    | \__/ |    |       /   /  \   \       |   |     |   |  \  \ |   |"
+echo "|    |      |    |      /   /    \   \      |   |     |   |   \  \|   |"
+echo "|____|      |____|     /___/      \___\     |___|     |___|    \______|"
+echo "                 _____      _____       _____________       _____        ___      ____      ____ " 
+echo "                |     \    /     |     |    _________|     |     \      |   |    |    |    |    | "
+echo "                |      \  /      |     |    |              |      \     |   |    |    |    |    | "
+echo "                |       \/       |     |    |              |       \    |   |    |    |    |    | "
+echo "                |                |     |    |______        |    _   \   |   |    |    |    |    | "
+echo "                |    |\    /|    |     |     ______|       |   | \   \  |   |    |    |    |    | "
+echo "                |    | \__/ |    |     |    |              |   |  \   \ |   |    |    \____/    | "
+echo "                |    |      |    |     |    |________      |   |   \   \|   |    \              / "
+echo "                |____|      |____|     |_____________|     |___|    \_______|     \____________/ "
 
 echo press any key to continue
 
@@ -125,14 +109,14 @@ goto :eof
 :update
 REM Check for updates
 echo Checking for updates...
-powershell -Command "(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/True100-True/chainsawHacker/main/brute_force_attack.bat', 'temp_update.bat')"
+powershell -Command "(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/True100-True/chainsawHacker/main/brute_force_attack.bat')"
 if errorlevel 1 (
     echo Failed to check for updates.
     goto :MAIN_MENU
 )
 
 REM Compare versions
-for /f "usebackq tokens=2 delims=:" %%a in (`findstr /r /c:"set \"VERSION=" temp_update.bat 2^>nul"`) do set "REMOTE_VERSION=%%a"
+for /f "useback tokens=2 delims=:" %%a in (`findstr /r /c:"set \"VERSION=" temp_update.bat 2^>nul"`) do set "REMOTE_VERSION=%%a"
 set "REMOTE_VERSION=%REMOTE_VERSION:~1%"
 call :CompareVersions %REMOTE_VERSION% %VERSION%
 if %COMP_RESULT% equ 1 (
